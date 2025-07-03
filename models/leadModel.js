@@ -21,6 +21,7 @@ const leadSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  remarks: Array,
 });
 
 module.exports = mongoose.model("Lead", leadSchema);
