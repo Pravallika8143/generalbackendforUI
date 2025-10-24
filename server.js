@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.get("/", (req, res) => {
+app.get("/", (res) => {
   res.send("Student Lead API is running");
 });
 dotenv.config();
