@@ -6,7 +6,7 @@ exports.getLeads = async (req, res) => {
     const leads = await Lead.find();
     res.json(leads);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.json({ message: err.message });
   }
 };
 
@@ -17,7 +17,7 @@ exports.getLeadById = async (req, res) => {
     if (!lead) return res.status(404).json({ message: "Lead not found" });
     res.json(lead);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.json({ message: err.message });
   }
 };
 
@@ -26,9 +26,9 @@ exports.createLead = async (req, res) => {
   try {
     const newLead = new Lead(req.body);
     const savedLead = await newLead.save();
-    res.status(201).json(savedLead);
+    res.json(savedLead);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.json({ message: err.message });
   }
 };
 
@@ -39,10 +39,10 @@ exports.updateLead = async (req, res) => {
       new: true,
     });
     if (!updatedLead)
-      return res.status(404).json({ message: "Lead not found" });
+      return res.json({ message: "Lead not found" });
     res.json(updatedLead);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.json({ message: err.message });
   }
 };
 
@@ -51,9 +51,9 @@ exports.deleteLead = async (req, res) => {
   try {
     const deletedLead = await Lead.findByIdAndDelete(req.params.id);
     if (!deletedLead)
-      return res.status(404).json({ message: "Lead not found" });
+      return res.json({ message: "Lead not found" });
     res.json({ message: "Lead deleted" });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.json({ message: err.message });
   }
 };
